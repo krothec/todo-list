@@ -35,13 +35,30 @@ export const TasksContextProvider = ({ children }) => {
 				if (found) {
 					const idx = task.itens.indexOf(found);
 					task.itens.splice(idx, 1);
-					await api.put(`/tasks/${task.id}`, {
+					const response = await api.put(`/tasks/${task.id}`, {
 						...task,
 					});
+					response && fetchTasks();
 				}
 			}
 		});
-		fetchTasks();
+	}
+
+	function onEditingNameList(item, newNameList) {
+		const found = tasks.find(task => task.id === item.id);
+		if (found) {
+			tasks.map(async task => {
+				if (task.id === item.id) {
+					task.name = newNameList;
+					const response = await api.put(`tasks/${task.id}`, {
+						...task,
+					});
+					if (response) {
+						fetchTasks();
+					}
+				}
+			});
+		}
 	}
 
 	function onCheckingItem(item) {
@@ -60,24 +77,15 @@ export const TasksContextProvider = ({ children }) => {
 						}
 					}
 				});
-				await api.put(`/tasks/${task.id}`, {
+				const response = await api.put(`/tasks/${task.id}`, {
 					...task,
 				});
+				response && fetchTasks();
 			}
 		});
-		fetchTasks();
 	}
 
-	async function onDeletingTask(item, level) {
-		if (level == 3) {
-			tasks.map((task, idx) => {});
-		}
-		await api.delete(`tasks/${item.id}`);
-		const newTasksList = tasks.filter(task => {
-			return task.id !== item.id;
-		});
-		setTasks(newTasksList);
-	}
+	async function onDeletingTask(item, level) {}
 
 	function onAddingNewSubTask(item, newSubTask) {
 		tasks.map(async (task, idx) => {
@@ -195,6 +203,7 @@ export const TasksContextProvider = ({ children }) => {
 				onDeletingList,
 				onDeletingItem,
 				userLogged,
+				onEditingNameList,
 			}}
 		>
 			{children}

@@ -2,15 +2,15 @@
   "tasks": [
     {
       "name": "Lista do ADM",
-      "order": 2,
+      "order": 1,
       "checked": false,
-      "id": 2,
+      "id": 1,
       "user": "admin",
       "itens": [
         {
           "name": "cores",
           "checked": false,
-          "id": 2,
+          "id": 1,
           "itens": [
             {
               "name": "amarelo",
@@ -28,30 +28,15 @@
               "checked": false
             }
           ]
-        },
-        {
-          "name": "ajustes",
-          "checked": false,
-          "id": 1,
-          "itens": [
-            {
-              "name": "em x",
-              "checked": false,
-              "id": 1
-            },
-            {
-              "name": "em y",
-              "id": 2,
-              "checked": false
-            },
-            {
-              "name": "em z",
-              "id": 3,
-              "checked": false
-            }
-          ]
         }
       ]
+    },
+    {
+      "name": "rrrr",
+      "order": 2,
+      "checked": false,
+      "user": "você",
+      "id": 2
     }
   ]
 }

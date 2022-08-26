@@ -15,6 +15,8 @@ import {
 	Add,
 	DeleteOutline,
 	Close,
+	Edit,
+	Check,
 } from '@material-ui/icons/';
 
 const List = task => {
@@ -23,6 +25,8 @@ const List = task => {
 	const [newSubTask, setNewSubTask] = useState('');
 	const [error, setError] = useState(false);
 	const [numberInputSubItem, setNumberInputSubItem] = useState(0);
+	const [newNameList, setNewNameList] = useState('');
+	const [showTextEditNameList, setShowTextEditNameList] = useState(false);
 	let item = task.item;
 
 	function handleAddTask() {
@@ -40,11 +44,18 @@ const List = task => {
 		} else context.onDeletingList(item);
 	}
 
+	function handleEditNameList(item) {
+		//context.onEditingNameList(item);
+		setShowTextEditNameList(true);
+	}
+
 	useEffect(() => {
 		setNewTask('');
 		setNewSubTask('');
 		setError(false);
 		setNumberInputSubItem(0);
+		setShowTextEditNameList(false);
+		setNewNameList('');
 	}, [context.tasks]);
 
 	function handleAddNewSubTask(item) {
@@ -61,11 +72,47 @@ const List = task => {
 		<Container>
 			<Inline>
 				<div>
-					<h1>{item.name}</h1>
+					{!showTextEditNameList && (
+						<Inline>
+							<h1>{item.name}</h1>
+							<IconButton
+								aria-label="Adicionar nova atividade"
+								component="span"
+								onClick={() => handleEditNameList(item)}
+							>
+								<Edit />
+							</IconButton>
+						</Inline>
+					)}
+					{showTextEditNameList && (
+						<>
+							<TextField
+								style={{ minWidth: '250px' }}
+								error={error}
+								helperText={
+									error
+										? `Não é possível adicionar uma atividade sem nome.`
+										: ''
+								}
+								id={item.id.toString()}
+								label="Novo nome da lista"
+								size="small"
+								onChange={e => setNewNameList(e.target.value)}
+								value={newNameList}
+							/>
+							<IconButton
+								aria-label="Excluir"
+								component="span"
+								onClick={() => context.onEditingNameList(item, newNameList)}
+							>
+								<Check />
+							</IconButton>
+						</>
+					)}
 					<p>Responsável: {item.user}</p>
 				</div>
 				<IconButton
-					aria-label="Adicionar nova atividade"
+					aria-label="Excluir"
 					component="span"
 					onClick={() => handleDeleteList(item)}
 				>

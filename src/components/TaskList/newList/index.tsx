@@ -1,6 +1,6 @@
 import { IconButton, TextField } from '@material-ui/core';
-import { AddCircleOutline, PlaylistAdd } from '@material-ui/icons';
-import { useContext, useState } from 'react';
+import { PlaylistAdd } from '@material-ui/icons';
+import { useContext, useEffect, useState } from 'react';
 import { TasksContext } from '../../../context/TaskContext';
 import { Header } from './style';
 
@@ -8,6 +8,10 @@ export function NewList() {
 	const context = useContext(TasksContext);
 	const [newList, setNewList] = useState('');
 	const [error, setError] = useState(false);
+
+	useEffect(() => {
+		setNewList('');
+	}, [context.tasks]);
 
 	function handleAddNewTask() {
 		if (newList === '') {
