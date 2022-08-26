@@ -1,0 +1,57 @@
+{
+  "tasks": [
+    {
+      "name": "Lista do ADM",
+      "order": 2,
+      "checked": false,
+      "id": 2,
+      "user": "admin",
+      "itens": [
+        {
+          "name": "cores",
+          "checked": false,
+          "id": 2,
+          "itens": [
+            {
+              "name": "amarelo",
+              "checked": false,
+              "id": 1
+            },
+            {
+              "name": "azul",
+              "id": 2,
+              "checked": false
+            },
+            {
+              "name": "rosa",
+              "id": 3,
+              "checked": false
+            }
+          ]
+        },
+        {
+          "name": "ajustes",
+          "checked": false,
+          "id": 1,
+          "itens": [
+            {
+              "name": "em x",
+              "checked": false,
+              "id": 1
+            },
+            {
+              "name": "em y",
+              "id": 2,
+              "checked": false
+            },
+            {
+              "name": "em z",
+              "id": 3,
+              "checked": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
