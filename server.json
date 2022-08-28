@@ -32,11 +32,63 @@
       ]
     },
     {
-      "name": "rrrr",
+      "name": "27/08 Sábado",
       "order": 2,
       "checked": false,
       "user": "você",
-      "id": 2
+      "id": 2,
+      "itens": [
+        {
+          "name": "lavar o quintal",
+          "checked": false,
+          "id": 3,
+          "itens": [
+            {
+              "name": "o plastico vermelho",
+              "checked": true,
+              "id": 1
+            }
+          ]
+        },
+        {
+          "name": "Lavar roupa",
+          "checked": false,
+          "id": 2,
+          "itens": [
+            {
+              "name": "se não chover",
+              "checked": true,
+              "id": 1
+            }
+          ]
+        },
+        {
+          "name": "Arrumar os brinquedos dos gatos",
+          "checked": false,
+          "id": 1
+        }
+      ]
+    },
+    {
+      "name": "Essa semana",
+      "order": 3,
+      "checked": false,
+      "user": "você",
+      "id": 3,
+      "itens": [
+        {
+          "name": "Lvar roupa",
+          "checked": false,
+          "id": 1
+        }
+      ]
+    },
+    {
+      "name": "Melhorias para este projeto",
+      "order": 4,
+      "checked": false,
+      "user": "você",
+      "id": 4
     }
   ]
 }
