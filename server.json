@@ -25,6 +25,16 @@
             {
               "name": "rosa",
               "id": 3,
+              "checked": true
+            },
+            {
+              "name": "na Beira Mar",
+              "id": 4,
+              "checked": false
+            },
+            {
+              "name": "testando",
+              "id": 5,
               "checked": false
             }
           ]
@@ -32,63 +42,30 @@
       ]
     },
     {
-      "name": "27/08 Sábado",
+      "name": "gggg",
       "order": 2,
       "checked": false,
       "user": "você",
       "id": 2,
       "itens": [
         {
-          "name": "lavar o quintal",
+          "name": "fffff",
           "checked": false,
-          "id": 3,
+          "id": 1,
           "itens": [
             {
-              "name": "o plastico vermelho",
-              "checked": true,
+              "name": "lllll",
+              "checked": false,
               "id": 1
-            }
-          ]
-        },
-        {
-          "name": "Lavar roupa",
-          "checked": false,
-          "id": 2,
-          "itens": [
+            },
             {
-              "name": "se não chover",
-              "checked": true,
-              "id": 1
+              "name": "llllll",
+              "id": 2,
+              "checked": false
             }
           ]
-        },
-        {
-          "name": "Arrumar os brinquedos dos gatos",
-          "checked": false,
-          "id": 1
         }
       ]
-    },
-    {
-      "name": "Essa semana",
-      "order": 3,
-      "checked": false,
-      "user": "você",
-      "id": 3,
-      "itens": [
-        {
-          "name": "Lvar roupa",
-          "checked": false,
-          "id": 1
-        }
-      ]
-    },
-    {
-      "name": "Melhorias para este projeto",
-      "order": 4,
-      "checked": false,
-      "user": "você",
-      "id": 4
     }
   ]
 }

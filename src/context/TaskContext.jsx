@@ -61,13 +61,14 @@ export const TasksContextProvider = ({ children }) => {
 		}
 	}
 
-	function onCheckingItem(item) {
-		tasks.map(async task => {
-			if (task.itens) {
-				task.itens.map(async it => {
-					if (it.itens) {
-						const found = it.itens.find(it => it.id === item.id);
-						if (found) {
+	function onCheckingItem(item, mainItem) {
+		const found = tasks.find(task => task.id === mainItem.item.id);
+		if (found) {
+			tasks.map(async task => {
+				if (task.id === found.id) {
+					task.itens.map(it => {
+						const found2 = it.itens.find(it => it.id === item.id);
+						if (found2) {
 							it.itens.map(itt => {
 								if (itt.id === item.id) {
 									return (itt.checked = !itt.checked);
@@ -75,49 +76,44 @@ export const TasksContextProvider = ({ children }) => {
 							});
 							return it;
 						}
-					}
-				});
+					});
+				}
 				const response = await api.put(`/tasks/${task.id}`, {
 					...task,
 				});
 				response && fetchTasks();
-			}
-		});
+			});
+		}
 	}
 
 	async function onDeletingTask(item, level) {}
 
-	function onAddingNewSubTask(item, newSubTask) {
-		tasks.map(async (task, idx) => {
-			if (task.itens) {
-				const found = task.itens.find(itt => {
-					return itt.id === item.id;
-				});
-				if (found) {
-					task.itens.map(async (it, idx4) => {
-						if (it.id === item.id) {
+	function onAddingNewSubTask(mainTask, item, newSubTask) {
+		const found = tasks.find(task => task.id === mainTask.item.id);
+		if (found) {
+			tasks.map(task => {
+				if (task.id === found.id) {
+					task.itens.map(async tsk => {
+						if (tsk.id === item.id) {
 							let newSubTaskArray = [];
-							if (it.itens) {
-								const auxiliarArray = it.itens;
-								auxiliarArray.push({
-									name: newSubTask,
-									id: it.itens.length + 1,
-									checked: false,
-								});
-								it.itens = auxiliarArray;
-								task.itens.map(async tt => {
-									if (tt.id === item.id) {
-										const response = await api.put(`tasks/${task.id}`, {
-											...task,
-											itens: task.itens,
-										});
-										response && fetchTasks();
-									}
+							if (tsk.itens) {
+								tsk.itens.map(async tsky => {
+									const auxiliarArray = tsk.itens;
+									auxiliarArray.push({
+										name: newSubTask,
+										id: tsk.itens.length + 1,
+										checked: false,
+									});
+									const response = await api.put(`tasks/${task.id}`, {
+										...task,
+										itens: task.itens,
+									});
+									response && fetchTasks();
 								});
 							} else {
 								newSubTaskArray = [];
 								newSubTaskArray.push({
-									...it,
+									...tsk,
 									itens: [
 										{
 											name: newSubTask,
@@ -139,8 +135,8 @@ export const TasksContextProvider = ({ children }) => {
 						}
 					});
 				}
-			}
-		});
+			});
+		}
 	}
 
 	async function onAddingNewTask(newTask, item) {

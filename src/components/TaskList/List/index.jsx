@@ -45,7 +45,6 @@ const List = task => {
 	}
 
 	function handleEditNameList(item) {
-		//context.onEditingNameList(item);
 		setShowTextEditNameList(true);
 	}
 
@@ -59,7 +58,7 @@ const List = task => {
 	}, [context.tasks]);
 
 	function handleAddNewSubTask(item) {
-		context.onAddingNewSubTask(item, newSubTask);
+		context.onAddingNewSubTask(task, item, newSubTask);
 	}
 
 	function handleShowNewSubtask(id) {
@@ -215,7 +214,7 @@ const List = task => {
 															'aria-label': 'checkbox with default color',
 														}}
 														checked={itt.checked}
-														onChange={() => context.onCheckingItem(itt)}
+														onChange={() => context.onCheckingItem(itt, task)}
 													/>
 													<h4 key={idx2.toString()}>{itt.name}</h4>
 												</InlineCheckBox>
